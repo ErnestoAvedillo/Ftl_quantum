@@ -1,5 +1,5 @@
 from qiskit_ibm_runtime import QiskitRuntimeService
-from ..setings import MY_API_TOKEN
+from settings import MY_API_TOKEN
 
 QiskitRuntimeService.save_account(
     channel='ibm_quantum',
@@ -8,16 +8,20 @@ QiskitRuntimeService.save_account(
     overwrite=True  # Set to True to overwrite existing credentials
 )
 
-from qiskit_aer import AerSimulator
-simulator = AerSimulator()
+from qiskit import Aer
+similators = Aer.backend()
+for sim in simulators:
+    print(sim)
 """
     method="matrix_product_state",
     matrix_product_state_max_bond_dimension=200,
     matrix_product_state_truncation_threshold=1e-6,
     mps_log_data=True,
 )"""
-print(simulator.available_methods())
-print(simulator.available_devices())
+from qiskit_aer import AerSimulator
+simulators = AerSimulator()
+print(simulators.available_methods())
+print(simulators.available_devices())
 
 #from qiskit_ibm_provider import IBMProvider
 #backend = IBMProvider().backends.ibm_qasm_simulator    
